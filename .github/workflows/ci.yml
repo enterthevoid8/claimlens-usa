@@ -20,7 +20,7 @@ jobs:
       - run: ruff format --check .
       - run: mypy
       - run: pytest --cov=claimlens --cov=claimlens_api --cov-report=term-missing --cov-report=xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: matrix.python == '3.12'
         with: { name: coverage, path: coverage.xml }
 
@@ -71,5 +71,5 @@ jobs:
       - run: pip install -e ".[dev]"
       - run: claimlens train --n 4000
       - run: claimlens eval --n 500
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: model-and-eval-report, path: "models/risk\nreports" }
