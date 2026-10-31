@@ -70,7 +70,7 @@ jobs:
           done
           echo "API did not become healthy" && exit 1
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - name: Build and deploy web
         working-directory: apps/web
