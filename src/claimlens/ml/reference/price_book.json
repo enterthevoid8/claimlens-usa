@@ -1,0 +1,671 @@
+{
+ "city_multiplier": {
+  "Atlanta": 1.0,
+  "Billings": 0.78,
+  "Boise": 0.85,
+  "Boston": 1.18,
+  "Charlotte": 0.95,
+  "Chicago": 1.08,
+  "Dallas": 1.0,
+  "Denver": 1.05,
+  "Houston": 1.0,
+  "Jackson": 0.75,
+  "Kansas City": 0.88,
+  "Los Angeles": 1.22,
+  "Memphis": 0.82,
+  "Miami": 1.05,
+  "Minneapolis": 0.97,
+  "Nashville": 0.95,
+  "New York": 1.32,
+  "Omaha": 0.85,
+  "Phoenix": 0.98,
+  "San Francisco": 1.3,
+  "Seattle": 1.12
+ },
+ "items": {
+  "anesthesia|appendectomy": {
+   "category": "anesthesia",
+   "median": 3420.0
+  },
+  "anesthesia|bariatric": {
+   "category": "anesthesia",
+   "median": 3420.0
+  },
+  "anesthesia|cataract": {
+   "category": "anesthesia",
+   "median": 855.0
+  },
+  "anesthesia|cesarean": {
+   "category": "anesthesia",
+   "median": 2160.0
+  },
+  "anesthesia|cholecystectomy": {
+   "category": "anesthesia",
+   "median": 2880.0
+  },
+  "anesthesia|colonoscopy": {
+   "category": "anesthesia",
+   "median": 432.0
+  },
+  "anesthesia|hernia": {
+   "category": "anesthesia",
+   "median": 1440.0
+  },
+  "anesthesia|hysterectomy": {
+   "category": "anesthesia",
+   "median": 3690.0
+  },
+  "anesthesia|orif_femur": {
+   "category": "anesthesia",
+   "median": 6480.0
+  },
+  "anesthesia|pci": {
+   "category": "anesthesia",
+   "median": 6120.0
+  },
+  "anesthesia|rhinoplasty": {
+   "category": "anesthesia",
+   "median": 1350.0
+  },
+  "anesthesia|spinal_fusion": {
+   "category": "anesthesia",
+   "median": 8550.0
+  },
+  "anesthesia|tha": {
+   "category": "anesthesia",
+   "median": 5400.0
+  },
+  "anesthesia|tka": {
+   "category": "anesthesia",
+   "median": 5580.0
+  },
+  "anesthesia|tonsillectomy": {
+   "category": "anesthesia",
+   "median": 1125.0
+  },
+  "blood_culture": {
+   "category": "diagnostic",
+   "median": 420
+  },
+  "cbc": {
+   "category": "diagnostic",
+   "median": 165
+  },
+  "consumables|appendectomy": {
+   "category": "consumable",
+   "median": 2660.0
+  },
+  "consumables|bariatric": {
+   "category": "consumable",
+   "median": 2660.0
+  },
+  "consumables|cataract": {
+   "category": "consumable",
+   "median": 665.0
+  },
+  "consumables|cesarean": {
+   "category": "consumable",
+   "median": 1680.0
+  },
+  "consumables|cholecystectomy": {
+   "category": "consumable",
+   "median": 2240.0
+  },
+  "consumables|colonoscopy": {
+   "category": "consumable",
+   "median": 336.0
+  },
+  "consumables|hernia": {
+   "category": "consumable",
+   "median": 1120.0
+  },
+  "consumables|hysterectomy": {
+   "category": "consumable",
+   "median": 2870.0
+  },
+  "consumables|orif_femur": {
+   "category": "consumable",
+   "median": 5040.0
+  },
+  "consumables|pci": {
+   "category": "consumable",
+   "median": 4760.0
+  },
+  "consumables|rhinoplasty": {
+   "category": "consumable",
+   "median": 1050.0
+  },
+  "consumables|spinal_fusion": {
+   "category": "consumable",
+   "median": 6650.0
+  },
+  "consumables|tha": {
+   "category": "consumable",
+   "median": 4200.0
+  },
+  "consumables|tka": {
+   "category": "consumable",
+   "median": 4340.0
+  },
+  "consumables|tonsillectomy": {
+   "category": "consumable",
+   "median": 875.0
+  },
+  "crp": {
+   "category": "diagnostic",
+   "median": 210
+  },
+  "ct_head": {
+   "category": "diagnostic",
+   "median": 3100
+  },
+  "ct_scan": {
+   "category": "diagnostic",
+   "median": 3600
+  },
+  "doctor_visit": {
+   "category": "doctor_fee",
+   "median": 380
+  },
+  "documentation": {
+   "category": "admin",
+   "median": 120
+  },
+  "ecg": {
+   "category": "diagnostic",
+   "median": 380
+  },
+  "echo": {
+   "category": "diagnostic",
+   "median": 2900
+  },
+  "er_fee": {
+   "category": "doctor_fee",
+   "median": 3800
+  },
+  "hba1c": {
+   "category": "diagnostic",
+   "median": 190
+  },
+  "icu": {
+   "category": "icu",
+   "median": 9500
+  },
+  "implant|appendectomy": {
+   "category": "procedure",
+   "median": 10640.0
+  },
+  "implant|bariatric": {
+   "category": "procedure",
+   "median": 10640.0
+  },
+  "implant|cataract": {
+   "category": "procedure",
+   "median": 2660.0
+  },
+  "implant|cesarean": {
+   "category": "procedure",
+   "median": 6720.0
+  },
+  "implant|cholecystectomy": {
+   "category": "procedure",
+   "median": 8960.0
+  },
+  "implant|colonoscopy": {
+   "category": "procedure",
+   "median": 1344.0
+  },
+  "implant|hernia": {
+   "category": "procedure",
+   "median": 4480.0
+  },
+  "implant|hysterectomy": {
+   "category": "procedure",
+   "median": 11480.0
+  },
+  "implant|orif_femur": {
+   "category": "procedure",
+   "median": 20160.0
+  },
+  "implant|pci": {
+   "category": "procedure",
+   "median": 19040.0
+  },
+  "implant|rhinoplasty": {
+   "category": "procedure",
+   "median": 4200.0
+  },
+  "implant|spinal_fusion": {
+   "category": "procedure",
+   "median": 26600.0
+  },
+  "implant|tha": {
+   "category": "procedure",
+   "median": 16800.0
+  },
+  "implant|tka": {
+   "category": "procedure",
+   "median": 17360.0
+  },
+  "implant|tonsillectomy": {
+   "category": "procedure",
+   "median": 3500.0
+  },
+  "inj_ceftriaxone": {
+   "category": "medicine",
+   "median": 95
+  },
+  "inj_furosemide": {
+   "category": "medicine",
+   "median": 85
+  },
+  "inj_insulin": {
+   "category": "medicine",
+   "median": 320
+  },
+  "inj_pantoprazole": {
+   "category": "medicine",
+   "median": 110
+  },
+  "inj_vancomycin": {
+   "category": "medicine",
+   "median": 210
+  },
+  "iv_fluid": {
+   "category": "medicine",
+   "median": 140
+  },
+  "lactate": {
+   "category": "diagnostic",
+   "median": 260
+  },
+  "metabolic": {
+   "category": "diagnostic",
+   "median": 240
+  },
+  "mri": {
+   "category": "diagnostic",
+   "median": 4200
+  },
+  "nursing": {
+   "category": "nursing",
+   "median": 650
+  },
+  "or|appendectomy": {
+   "category": "operating_room",
+   "median": 7600.0
+  },
+  "or|bariatric": {
+   "category": "operating_room",
+   "median": 7600.0
+  },
+  "or|cataract": {
+   "category": "operating_room",
+   "median": 1900.0
+  },
+  "or|cesarean": {
+   "category": "operating_room",
+   "median": 4800.0
+  },
+  "or|cholecystectomy": {
+   "category": "operating_room",
+   "median": 6400.0
+  },
+  "or|colonoscopy": {
+   "category": "operating_room",
+   "median": 960.0
+  },
+  "or|hernia": {
+   "category": "operating_room",
+   "median": 3200.0
+  },
+  "or|hysterectomy": {
+   "category": "operating_room",
+   "median": 8200.0
+  },
+  "or|orif_femur": {
+   "category": "operating_room",
+   "median": 14400.0
+  },
+  "or|pci": {
+   "category": "operating_room",
+   "median": 13600.0
+  },
+  "or|rhinoplasty": {
+   "category": "operating_room",
+   "median": 3000.0
+  },
+  "or|spinal_fusion": {
+   "category": "operating_room",
+   "median": 19000.0
+  },
+  "or|tha": {
+   "category": "operating_room",
+   "median": 12000.0
+  },
+  "or|tka": {
+   "category": "operating_room",
+   "median": 12400.0
+  },
+  "or|tonsillectomy": {
+   "category": "operating_room",
+   "median": 2500.0
+  },
+  "pharmacy": {
+   "category": "medicine",
+   "median": 2400
+  },
+  "registration": {
+   "category": "admin",
+   "median": 175
+  },
+  "room_private": {
+   "category": "room",
+   "median": 4800
+  },
+  "room_semi": {
+   "category": "room",
+   "median": 3200
+  },
+  "room_stepdown": {
+   "category": "room",
+   "median": 5600
+  },
+  "room_suite": {
+   "category": "room",
+   "median": 7500
+  },
+  "surgeon|appendectomy": {
+   "category": "surgeon",
+   "median": 8360.0
+  },
+  "surgeon|bariatric": {
+   "category": "surgeon",
+   "median": 8360.0
+  },
+  "surgeon|cataract": {
+   "category": "surgeon",
+   "median": 2090.0
+  },
+  "surgeon|cesarean": {
+   "category": "surgeon",
+   "median": 5280.0
+  },
+  "surgeon|cholecystectomy": {
+   "category": "surgeon",
+   "median": 7040.0
+  },
+  "surgeon|colonoscopy": {
+   "category": "surgeon",
+   "median": 1056.0
+  },
+  "surgeon|hernia": {
+   "category": "surgeon",
+   "median": 3520.0
+  },
+  "surgeon|hysterectomy": {
+   "category": "surgeon",
+   "median": 9020.0
+  },
+  "surgeon|orif_femur": {
+   "category": "surgeon",
+   "median": 15840.0
+  },
+  "surgeon|pci": {
+   "category": "surgeon",
+   "median": 14960.0
+  },
+  "surgeon|rhinoplasty": {
+   "category": "surgeon",
+   "median": 3300.0
+  },
+  "surgeon|spinal_fusion": {
+   "category": "surgeon",
+   "median": 20900.0
+  },
+  "surgeon|tha": {
+   "category": "surgeon",
+   "median": 13200.0
+  },
+  "surgeon|tka": {
+   "category": "surgeon",
+   "median": 13640.0
+  },
+  "surgeon|tonsillectomy": {
+   "category": "surgeon",
+   "median": 2750.0
+  },
+  "tab_acetaminophen": {
+   "category": "medicine",
+   "median": 12
+  },
+  "troponin": {
+   "category": "diagnostic",
+   "median": 320
+  },
+  "usg_abdomen": {
+   "category": "diagnostic",
+   "median": 1450
+  },
+  "xray_chest": {
+   "category": "diagnostic",
+   "median": 520
+  }
+ },
+ "matchers": {
+  "anesthesia": {
+   "phrases": [
+    "anesthesia services"
+   ],
+   "proc_linked": true
+  },
+  "blood_culture": {
+   "phrases": [
+    "laboratory - blood culture"
+   ]
+  },
+  "cbc": {
+   "phrases": [
+    "laboratory - cbc with differential"
+   ]
+  },
+  "consumables": {
+   "phrases": [
+    "surgical supplies kit"
+   ],
+   "proc_linked": true
+  },
+  "crp": {
+   "phrases": [
+    "laboratory - c-reactive protein"
+   ]
+  },
+  "ct_head": {
+   "phrases": [
+    "radiology - ct head without contrast"
+   ]
+  },
+  "ct_scan": {
+   "phrases": [
+    "radiology - ct scan with contrast"
+   ]
+  },
+  "doctor_visit": {
+   "phrases": [
+    "hospitalist physician visit",
+    "physician visit - inpatient"
+   ]
+  },
+  "documentation": {
+   "phrases": [
+    "medical records processing fee"
+   ]
+  },
+  "ecg": {
+   "phrases": [
+    "ecg 12-lead"
+   ]
+  },
+  "echo": {
+   "phrases": [
+    "echocardiogram, complete"
+   ]
+  },
+  "er_fee": {
+   "phrases": [
+    "emergency department visit"
+   ]
+  },
+  "hba1c": {
+   "phrases": [
+    "laboratory - hemoglobin a1c"
+   ]
+  },
+  "icu": {
+   "phrases": [
+    "icu room and board",
+    "intensive care unit charges"
+   ]
+  },
+  "implant": {
+   "phrases": [
+    "implant and prosthesis charges"
+   ],
+   "proc_linked": true
+  },
+  "inj_ceftriaxone": {
+   "phrases": [
+    "ceftriaxone 1 g injection"
+   ]
+  },
+  "inj_furosemide": {
+   "phrases": [
+    "furosemide 40 mg injection"
+   ]
+  },
+  "inj_insulin": {
+   "phrases": [
+    "insulin regular iv infusion"
+   ]
+  },
+  "inj_pantoprazole": {
+   "phrases": [
+    "pantoprazole 40 mg iv injection"
+   ]
+  },
+  "inj_vancomycin": {
+   "phrases": [
+    "vancomycin 1 g iv infusion"
+   ]
+  },
+  "iv_fluid": {
+   "phrases": [
+    "iv fluids - normal saline 1000 ml",
+    "iv solution - lactated ringer's 1000 ml"
+   ]
+  },
+  "lactate": {
+   "phrases": [
+    "laboratory - lactate"
+   ]
+  },
+  "metabolic": {
+   "phrases": [
+    "laboratory - basic metabolic panel"
+   ]
+  },
+  "mri": {
+   "phrases": [
+    "radiology - mri scan"
+   ]
+  },
+  "nursing": {
+   "phrases": [
+    "nursing services",
+    "nursing care charges"
+   ]
+  },
+  "or": {
+   "phrases": [
+    "operating room time"
+   ],
+   "proc_linked": true
+  },
+  "pharmacy": {
+   "phrases": [
+    "pharmacy - general medications",
+    "pharmacy - drugs and solutions"
+   ]
+  },
+  "registration": {
+   "phrases": [
+    "administrative and medical records fee"
+   ]
+  },
+  "room_private": {
+   "phrases": [
+    "private"
+   ]
+  },
+  "room_semi": {
+   "phrases": [
+    "semi-private"
+   ]
+  },
+  "room_stepdown": {
+   "phrases": [
+    "step-down unit"
+   ]
+  },
+  "room_suite": {
+   "phrases": [
+    "suite"
+   ]
+  },
+  "surgeon": {
+   "phrases": [
+    "surgeon professional fee"
+   ],
+   "proc_linked": true
+  },
+  "tab_acetaminophen": {
+   "phrases": [
+    "acetaminophen 650 mg tablet"
+   ]
+  },
+  "troponin": {
+   "phrases": [
+    "laboratory - troponin"
+   ]
+  },
+  "usg_abdomen": {
+   "phrases": [
+    "radiology - abdominal ultrasound"
+   ]
+  },
+  "xray_chest": {
+   "phrases": [
+    "radiology - chest x-ray, 2 views"
+   ]
+  }
+ },
+ "proc_aliases": {
+  "Cataract extraction with intraocular lens": "cataract",
+  "Cesarean delivery": "cesarean",
+  "Colonoscopy with biopsy": "colonoscopy",
+  "Cosmetic rhinoplasty": "rhinoplasty",
+  "Inguinal hernia repair with mesh": "hernia",
+  "Laparoscopic appendectomy": "appendectomy",
+  "Laparoscopic cholecystectomy": "cholecystectomy",
+  "Laparoscopic sleeve gastrectomy": "bariatric",
+  "Lumbar arthrodesis (spinal fusion)": "spinal_fusion",
+  "ORIF femur with intramedullary nail": "orif_femur",
+  "Percutaneous coronary intervention with stent": "pci",
+  "Tonsillectomy": "tonsillectomy",
+  "Total hip arthroplasty": "tha",
+  "Total knee arthroplasty": "tka",
+  "Total laparoscopic hysterectomy": "hysterectomy"
+ },
+ "sigma": 0.2,
+ "version": "synthetic-us-1"
+}

@@ -1,0 +1,11 @@
+.git
+.claimlens
+models
+reports
+**/__pycache__
+**/node_modules
+apps/web/.next
+apps/web/out
+tests
+docs
+infra

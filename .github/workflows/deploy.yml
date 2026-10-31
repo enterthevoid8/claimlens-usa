@@ -1,0 +1,87 @@
+name: Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      environment: { description: "dev or prod", required: true, default: dev, type: choice, options: [dev, prod] }
+  push:
+    branches: [main]
+    paths: ["src/**", "apps/**", "infra/**", "docker/**", "pyproject.toml"]
+
+# OIDC federation: no client secrets. Configure a federated credential on the app registration for each GitHub environment.
+permissions:
+  id-token: write
+  contents: read
+
+concurrency: { group: "deploy-${{ inputs.environment || 'dev' }}", cancel-in-progress: false }
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'dev' }}      # prod: add required reviewers in the GitHub environment settings
+    env:
+      ENVIRONMENT: ${{ inputs.environment || 'dev' }}
+      RG: rg-claimlens-${{ inputs.environment || 'dev' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: What-if
+        run: |
+          az deployment group what-if -g "$RG" -f infra/main.bicep -p "infra/parameters/${ENVIRONMENT}.bicepparam" \
+            -p entraAudience="${{ vars.ENTRA_AUDIENCE }}" -p deployerPrincipalId="${{ vars.AZURE_DEPLOYER_OBJECT_ID }}" --no-pretty-print > /dev/null
+
+      - name: Deploy infrastructure
+        id: infra
+        run: |
+          out=$(az deployment group create -g "$RG" -f infra/main.bicep -p "infra/parameters/${ENVIRONMENT}.bicepparam" \
+            -p entraAudience="${{ vars.ENTRA_AUDIENCE }}" -p deployerPrincipalId="${{ vars.AZURE_DEPLOYER_OBJECT_ID }}" --query properties.outputs -o json)
+          for k in acrName apiAppName workerAppName webAppName storageAccount apiUrl; do
+            echo "$k=$(echo "$out" | jq -r ".$k.value")" >> "$GITHUB_OUTPUT"
+          done
+
+      - name: Build images in ACR
+        run: |
+          tag="${GITHUB_SHA::12}"
+          az acr build -r "${{ steps.infra.outputs.acrName }}" -f docker/Dockerfile --target api    -t "claimlens-api:$tag"    .
+          az acr build -r "${{ steps.infra.outputs.acrName }}" -f docker/Dockerfile --target worker -t "claimlens-worker:$tag" .
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+
+      - name: Train and publish the model bundle (synthetic demo model; replace with your registry in production)
+        run: |
+          pip install -e ".[dev]" azure-storage-blob azure-identity
+          claimlens train --n 4000
+          prefix=$(claimlens upload-model --storage-url "https://${{ steps.infra.outputs.storageAccount }}.blob.core.windows.net" | tail -n 1)
+          echo "MODEL_PREFIX=$prefix" >> "$GITHUB_ENV"
+
+      - name: Roll out
+        run: |
+          acr="${{ steps.infra.outputs.acrName }}.azurecr.io"
+          az containerapp update -g "$RG" -n "${{ steps.infra.outputs.apiAppName }}"    --image "$acr/claimlens-api:$TAG" --set-env-vars "CLAIMLENS_MODEL_BLOB_PREFIX=$MODEL_PREFIX"
+          az containerapp update -g "$RG" -n "${{ steps.infra.outputs.workerAppName }}" --image "$acr/claimlens-worker:$TAG" --set-env-vars "CLAIMLENS_MODEL_BLOB_PREFIX=$MODEL_PREFIX"
+
+      - name: Smoke test
+        run: |
+          for i in $(seq 1 30); do
+            curl -fsS "${{ steps.infra.outputs.apiUrl }}/healthz" && exit 0 || sleep 10
+          done
+          echo "API did not become healthy" && exit 1
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Build and deploy web
+        working-directory: apps/web
+        env:
+          NEXT_PUBLIC_API_URL: ${{ steps.infra.outputs.apiUrl }}
+          NEXT_PUBLIC_AUTH_MODE: entra
+          NEXT_PUBLIC_ENTRA_CLIENT_ID: ${{ vars.WEB_CLIENT_ID }}
+          NEXT_PUBLIC_ENTRA_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+          NEXT_PUBLIC_ENTRA_API_SCOPE: ${{ vars.ENTRA_API_SCOPE }}
+        run: |
+          npm ci && npm run build
+          token=$(az staticwebapp secrets list -g "$RG" -n "${{ steps.infra.outputs.webAppName }}" --query properties.apiKey -o tsv)
+          echo "::add-mask::$token"
+          npx --yes @azure/static-web-apps-cli deploy ./out --deployment-token "$token" --env production

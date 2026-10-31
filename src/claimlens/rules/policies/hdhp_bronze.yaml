@@ -1,0 +1,15 @@
+# High-deductible plan with HSA eligibility (synthetic).
+product_name: Bronze HDHP
+plan_type: HDHP
+waiting_period_days: 60
+timely_filing_days: 90
+deductible: 8000
+coinsurance_pct: 30
+oop_max: 9200
+preauth_required_above: 40000
+preauth_keywords: [knee arthroplasty, hip arthroplasty, arthrodesis, coronary intervention]
+exclusions:
+  - {code: COSM, title: Cosmetic or aesthetic surgery, keywords: [cosmetic, aesthetic, rhinoplasty, liposuction, botox], clause: "3.1"}
+  - {code: BARI, title: Weight-loss surgery, keywords: [gastrectomy, bariatric, obesity surgery], clause: "3.2"}
+  - {code: EXPR, title: Experimental or investigational treatment, keywords: [experimental, investigational], clause: "3.3"}
+benefit_limits: []

@@ -1,0 +1,16 @@
+# Employer-style PPO (synthetic, not a real plan's terms).
+product_name: Gold PPO
+plan_type: PPO
+waiting_period_days: 0
+timely_filing_days: 365
+deductible: 1500
+coinsurance_pct: 20
+oop_max: 6000
+preauth_required_above: 50000
+preauth_keywords: [knee arthroplasty, hip arthroplasty, arthrodesis, gastrectomy, coronary intervention]
+exclusions:
+  - {code: COSM, title: Cosmetic or aesthetic surgery, keywords: [cosmetic, aesthetic, rhinoplasty, liposuction, botox], clause: "3.1"}
+  - {code: EXPR, title: Experimental or investigational treatment, keywords: [experimental, investigational], clause: "3.2"}
+  - {code: CUST, title: Custodial care, keywords: [custodial], clause: "3.3"}
+benefit_limits:
+  - {procedure: Bariatric surgery, keywords: [gastrectomy, bariatric], max_amount: 30000, clause: "6.1"}

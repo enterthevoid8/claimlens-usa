@@ -1,0 +1,26 @@
+# Local stack: API + worker sharing one volume (filesystem queue and storage), plus the web UI in dev mode.
+# Everything runs offline with synthetic data.   docker compose -f docker/docker-compose.yml up --build
+services:
+  api:
+    build: { context: .., dockerfile: docker/Dockerfile, target: api, args: { TRAIN_DEMO_MODEL: "true" } }
+    environment:
+      CLAIMLENS_ENVIRONMENT: dev
+      CLAIMLENS_BACKEND: local
+      CLAIMLENS_AUTH_MODE: dev
+      CLAIMLENS_CORS_ORIGINS: '["http://localhost:3000"]'
+    ports: ["8000:8000"]
+    volumes: ["claimdata:/data"]
+  worker:
+    build: { context: .., dockerfile: docker/Dockerfile, target: worker, args: { TRAIN_DEMO_MODEL: "true" } }
+    environment: { CLAIMLENS_ENVIRONMENT: dev, CLAIMLENS_BACKEND: local, CLAIMLENS_AUTH_MODE: dev }
+    volumes: ["claimdata:/data"]
+    depends_on: [api]
+  web:
+    image: node:22-alpine
+    working_dir: /web
+    command: sh -c "npm ci && npm run dev -- --hostname 0.0.0.0"
+    environment: { NEXT_PUBLIC_API_URL: "http://localhost:8000", NEXT_PUBLIC_AUTH_MODE: dev }
+    volumes: ["../apps/web:/web"]
+    ports: ["3000:3000"]
+volumes:
+  claimdata: {}
