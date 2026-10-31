@@ -30,7 +30,7 @@ azure = [
   "azure-ai-documentintelligence>=1.0.0",
   "azure-search-documents>=11.6",
   "openai>=1.40",
-  "azure-monitor-opentelemetry>=1.6",
+  "azure-monitor-opentelemetry>=1.8.11",
 ]
 pdf = ["pypdf>=4.0"]
 mlops = ["mlflow-skinny>=2.14", "shap>=0.45"]
