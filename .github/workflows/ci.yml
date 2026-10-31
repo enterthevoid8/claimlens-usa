@@ -13,7 +13,7 @@ jobs:
       matrix: { python: ["3.12", "3.13"] }
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: { python-version: "${{ matrix.python }}", cache: pip }
       - run: pip install -e ".[api,azure,pdf,dev]"
       - run: ruff check .
@@ -29,7 +29,7 @@ jobs:
     continue-on-error: true   # advisory: findings are reviewed, not allowed to block unrelated work
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: { python-version: "3.12", cache: pip }
       - run: pip install -e ".[api,azure,pdf]" pip-audit
       - run: pip-audit --skip-editable
@@ -66,7 +66,7 @@ jobs:
     needs: python
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: { python-version: "3.12", cache: pip }
       - run: pip install -e ".[dev]"
       - run: claimlens train --n 4000
